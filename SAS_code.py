@@ -1,3 +1,36 @@
+####################### SAS merge #############################
+
+# SAS
+
+Data merged;
+merge df1 (in=A) df2 (in=B);
+by var;
+run;
+
+# Python
+
+merged = pd.merge(df1, df2, on='var', how='inner')
+
+# Hva vi har på 'how=' er viktig! 'Left' betyr at vi matcher på df1, mens 'right' betyr at vi gjør det på det andre. 
+# Inner og outer matcher på begge datasett men endrer rekkefølgen på rader
+
+# SAS
+
+Data merged;
+merge df1 (in=A) df2 (in=B);
+by var;
+if A;
+run;
+
+
+# Python
+
+merged = pd.merge(df1, df2, on='var', how='left')
+
+# Her (linja over) brukte jeg 'left' fordi SAS kommandoen har en 'if A;' linje som spesifiserer at vi matcher på df1. 
+# Se denne nettsida her for mer info; https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_sas.html
+
+
 ###################### SAS Proc freq med 'where' statement ########################
 
 # SAS
