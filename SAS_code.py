@@ -31,9 +31,36 @@ merged = pd.merge(df1, df2, on='var', how='left')
 # Se denne nettsida her for mer info; https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_sas.html
 
 
-###################### SAS Proc freq med 'where' statement ########################
+###################### SAS Proc freqs statement ########################
 
-# SAS
+# SAS - multiple conditions on one variable
+
+proc freq data=df;
+where col1 in ('1', 'a', '4', 'yh');
+table col2;
+run;
+
+# Python
+
+values = ['1', 'a', '4', 'yh']
+display(df.loc[df['col1'].isin(values)]['col2'].value_counts())
+
+# The Python "isin.()" function works the same as the SAS 'in'
+
+
+# SAS - conditions on multiple variables
+
+proc freq data=df;
+where col1='' and col2 in ('A') and col3 < 3;
+table col4 / list missing;
+run;
+
+# Python
+
+display(df.loc[(df['col1'].isnull())&(df['col2']=='A')&(df['col3']<3)]['col4'].value_counts(dropna=False))
+
+
+# SAS - singel condition
 
 proc freq data=df;
 where col1='';
