@@ -1,3 +1,23 @@
+###################### SAS data management ###########################
+
+# SAS
+
+data df;
+set df;
+var1 = put(var2, 4.)
+run;
+
+# Python
+
+df['var1'] = df['var2'].str.slice(0, 4)
+
+# .str.slice() klipper ut karakterer fra en string variabel
+
+
+
+
+
+
 ####################### SAS merge #############################
 
 # SAS
