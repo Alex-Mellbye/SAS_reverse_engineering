@@ -1,4 +1,4 @@
-###################### SAS data management ###########################
+###################### SAS put ###########################
 
 # SAS
 
@@ -123,3 +123,14 @@ display(pd.crosstab(df.var1, columns=df.var2).stack())
 
 # eller denne:
 display(pd.crosstab([df.var1, df.var2],  columns='Antall', margins=False))
+
+
+
+######################## Lage nytt datasett med macro ##############################
+
+når man skal legge 'aaret' til df'en. Men dette er også problematisk i SAS fordi et eller annet med globals.
+
+globals()[f"df_{aaret}"] = kat
+
+
+
